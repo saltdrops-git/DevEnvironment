@@ -1,0 +1,73 @@
+---
+- name: Erstelle temporären Download-Ordner
+  ansible.builtin.file:
+    path: /tmp/prometheus
+    state: directory
+    mode: '0755'
+
+- name: Lade Prometheus herunter
+  ansible.builtin.get_url:
+    url: "https://github.com/prometheus/prometheus/releases/download/v2.20.0-rc.1/prometheus-2.20.0-rc.1.linux-amd64.tar.gz"
+    dest: "/tmp/prometheus/prometheus.tar.gz"
+    mode: '0644'
+
+- name: Entpacke Prometheus
+  ansible.builtin.unarchive:
+    src: "/tmp/prometheus/prometheus.tar.gz"
+    dest: "/opt/"
+    remote_src: yes
+
+- name: Verschiebe Prometheus-Binärdateien nach /usr/local/bin
+  ansible.builtin.copy:
+    src: "/opt/prometheus-2.20.0-rc.1.linux-amd64/prometheus"
+    dest: "/usr/local/bin/prometheus"
+    mode: '0755'
+    remote_src: yes
+
+- name: Erstelle Prometheus-Systemd-Service
+  ansible.builtin.copy:
+    dest: "/etc/systemd/system/prometheus.service"
+    content: |
+      [Unit]
+      Description=Prometheus
+      Wants=network-online.target
+      After=network-online.target
+
+      [Service]
+      User=nobody
+      ExecStart=/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/var/lib/prometheus
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+    mode: '0644'
+
+- name: Erstelle Prometheus-Ordner und setze Berechtigungen
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: nobody
+    group: nobody
+    mode: '0755'
+  loop:
+    - "/etc/prometheus"
+    - "/var/lib/prometheus"
+- name: Erstelle Prometheus-Konfigurationsdatei
+  ansible.builtin.copy:
+    dest: "/etc/prometheus/prometheus.yml"
+    content: |
+      global:
+        scrape_interval: 15s
+
+      scrape_configs:
+        - job_name: "prometheus"
+          static_configs:
+            - targets: ["localhost:9090"]
+    mode: '0644'
+
+- name: Starte und aktiviere Prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    enabled: yes
+    state: started
+

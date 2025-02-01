@@ -1,0 +1,27 @@
+# prometheus.yml
+global:
+  scrape_interval: 15s  # Wie häufig Prometheus Metriken abruft
+  evaluation_interval: 15s  # Wie häufig Prometheus Regeln evaluiert
+
+# Web-API-Konfiguration (Standardmäßig Port 9090)
+web:
+  external_labels:
+    monitor: 'my-monitor'  # Label zur Identifikation des Prometheus Servers
+
+# Definition von Targets, von denen Metriken abgerufen werden sollen
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s  # Abfrageintervall für Prometheus
+    static_configs:
+      - targets: ['localhost:9090']  # Prometheus selbst als Ziel hinzufügen
+
+  - job_name: 'node_exporter'
+    scrape_interval: 10s  # Abfrageintervall für node_exporter
+    static_configs:
+      - targets: ['localhost:9100']  # Node Exporter als Ziel hinzufügen
+
+  - job_name: 'grafana'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:3000']  # Grafana-API für Metriken
+

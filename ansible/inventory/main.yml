@@ -1,0 +1,8 @@
+---
+- name: Setup Grafana
+  hosts: prometheus  # Die Hostgruppe, die in der Inventory-Datei definiert ist
+  become: true  # Falls Root-Rechte benötigt werden
+  roles:
+    - install_prometheus
+
+

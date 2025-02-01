@@ -1,0 +1,66 @@
+---
+- name: Installiere Abhängigkeiten (Debian & RHEL)
+  ansible.builtin.package:
+    name: ["wget"]
+    state: present
+
+- name: Lade Grafana GPG-Schlüssel herunter
+  ansible.builtin.get_url:
+    url: "https://rpm.grafana.com/gpg.key"
+    dest: "/tmp/grafana.gpg.key"
+    mode: '0644'
+
+- name: Importiere GPG-Schlüssel (RHEL & Debian)
+  ansible.builtin.command:
+    cmd: "rpm --import /tmp/grafana.gpg.key"
+  args:
+    removes: "/tmp/grafana.gpg.key"
+  when: ansible_os_family == "RedHat"
+
+- name: Füge Grafana-Repository hinzu (Debian)
+  ansible.builtin.apt_repository:
+    repo: "deb https://packages.grafana.com/oss/deb stable main"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Füge Grafana-Repository hinzu (RHEL)
+  ansible.builtin.yum_repository:
+    name: grafana
+    description: Grafana Repository
+    baseurl: https://packages.grafana.com/oss/rpm
+    gpgcheck: 1
+    gpgkey: https://rpm.grafana.com/gpg.key
+    enabled: 1
+  when: ansible_os_family == "RedHat"
+
+- name: Installiere Grafana
+  ansible.builtin.package:
+    name: grafana
+    state: present
+
+- name: Stelle sicher, dass Grafana gestartet und aktiviert ist
+  ansible.builtin.systemd:
+    name: grafana-server
+    enabled: yes
+    state: started
+
+- name: Öffne Firewall-Port für Grafana (Debian - UFW)
+  community.general.ufw:
+    rule: allow
+    port: "3000"
+    proto: tcp
+  when: ansible_os_family == "Debian"
+
+- name: Öffne Firewall-Port für Grafana (RHEL - Firewalld)
+  ansible.builtin.firewalld:
+    port: 3000/tcp
+    permanent: yes
+    state: enabled
+  when: ansible_os_family == "RedHat"
+
+- name: Lade Firewall-Regeln neu (RHEL)
+  ansible.builtin.systemd:
+    name: firewalld
+    state: restarted
+  when: ansible_os_family == "RedHat"
+

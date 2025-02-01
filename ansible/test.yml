@@ -1,0 +1,10 @@
+---
+- name: Create a file with touch
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Ensure a file exists (touch example.txt)
+      ansible.builtin.file:
+        path: /tmp/example.txt
+        state: touch

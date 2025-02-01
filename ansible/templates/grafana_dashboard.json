@@ -1,0 +1,21 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Custom Dashboard",
+    "timezone": "browser",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "CPU Load",
+        "targets": [
+          {
+            "expr": "node_load1",
+            "legendFormat": "{{instance}}"
+          }
+        ]
+      }
+    ]
+  },
+  "overwrite": true
+}
+
