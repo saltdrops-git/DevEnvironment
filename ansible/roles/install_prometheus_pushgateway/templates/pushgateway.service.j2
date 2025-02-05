@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Pushgateway
+After=network.target
+
+[Service]
+ExecStart={{ install_dir }}/pushgateway --web.listen-address=":9091"
+Restart=always
+User=nobody
+Group=nogroup
+
+[Install]
+WantedBy=multi-user.target
+

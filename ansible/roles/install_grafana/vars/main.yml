@@ -1,0 +1,4 @@
+grafana_version: "10.0.0"
+grafana_install_dir: "/opt/grafana"
+grafana_service_name: "grafana"
+

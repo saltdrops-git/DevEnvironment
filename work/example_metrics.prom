@@ -1,0 +1,7 @@
+# HELP my_custom_metric This is a custom metric example
+# TYPE my_custom_metric gauge
+my_custom_metric 123.45
+
+# HELP another_metric Another example metric
+# TYPE another_metric counter
+another_metric 678

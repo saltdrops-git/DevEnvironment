@@ -2,8 +2,16 @@
 - name: Setup Grafana
   hosts: prometheus  # Die Hostgruppe, die in der Inventory-Datei definiert ist
   become: true  # Falls Root-Rechte benötigt werden
+  vars:
+    grafana_version: "11.0.0"
+    grafana_download_url: "https://dl.grafana.com/enterprise/release/grafana-enterprise-{{ grafana_version }}.linux-amd64.tar.gz"
+    install_dir: "/opt/grafana"
   roles:
     - install_grafana
     - install_prometheus
-
-
+    - install_prometheus_pushgateway
+      #- install_docker
+    - install_node_exporter
+    - install_elkstack
+    - elkstack_firewall
+    - configure_elkstack_logstash

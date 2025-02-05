@@ -1,0 +1,39 @@
+---
+- name: Copy Pushgateway archive to target system
+  copy:
+    src: "files/pushgateway-{{ pushgateway_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/pushgateway.tar.gz"
+    mode: "0644"
+
+- name: Extract Pushgateway
+  ansible.builtin.unarchive:
+    src: "/tmp/pushgateway.tar.gz"
+    dest: "/tmp/"
+    remote_src: yes
+
+- name: Move Pushgateway binary
+  command: mv /tmp/pushgateway-{{ pushgateway_version }}.linux-amd64/pushgateway {{ install_dir }}/pushgateway
+  args:
+    creates: "{{ install_dir }}/pushgateway"
+
+- name: Ensure Pushgateway is executable
+  file:
+    path: "{{ install_dir }}/pushgateway"
+    mode: "0755"
+
+- name: Create systemd service file
+  template:
+    src: pushgateway.service.j2
+    dest: "{{ service_file }}"
+  notify: Restart Pushgateway  # 💡 Handler wird hier aufgerufen
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start Pushgateway
+  systemd:
+    name: pushgateway
+    enabled: yes
+    state: started
+

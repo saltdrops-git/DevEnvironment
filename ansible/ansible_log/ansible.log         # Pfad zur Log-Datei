@@ -1232,3 +1232,306 @@ The offending line appears to be:
 2025-02-01 22:57:57,246 p=25079 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"changed": false, "msg": "Failed to download metadata for repo 'epel': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried", "rc": 1, "results": []}
 2025-02-01 22:57:57,247 p=25079 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
 2025-02-01 22:57:57,247 p=25079 u=root n=ansible | 192.168.178.120            : ok=3    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-01 23:57:50,165 p=34286 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-01 23:57:50,165 p=34286 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-01 23:57:50,165 p=34286 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-01 23:57:50,168 p=34286 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-01 23:57:50,201 p=34286 u=root n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  did not find expected key
+
+The error appears to be in '/opt/DEV/ansible/roles/install_grafana/tasks/main.yml': line 7, column 1, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Installiere Abhängigkeiten (Debian & RHEL)
+^ here
+
+2025-02-01 23:59:47,951 p=34319 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-01 23:59:47,951 p=34319 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-01 23:59:47,951 p=34319 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-01 23:59:47,954 p=34319 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-01 23:59:47,984 p=34319 u=root n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  did not find expected key
+
+The error appears to be in '/opt/DEV/ansible/roles/install_grafana/tasks/main.yml': line 7, column 1, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Installiere Abhängigkeiten (Debian & RHEL)
+^ here
+
+2025-02-02 00:00:29,600 p=34335 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 00:00:29,600 p=34335 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 00:00:29,600 p=34335 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 00:00:29,603 p=34335 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 00:00:29,693 p=34335 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 00:00:29,700 p=34335 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 00:00:31,052 p=34335 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:00:31,063 p=34335 u=root n=ansible | TASK [install_grafana : Installiere Abhängigkeiten (Debian & RHEL)] *****************************************************************************************************************
+2025-02-02 00:00:32,311 p=34335 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"changed": false, "msg": "Failed to download metadata for repo 'epel': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried", "rc": 1, "results": []}
+2025-02-02 00:00:32,312 p=34335 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 00:00:32,312 p=34335 u=root n=ansible | 192.168.178.120            : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 00:04:33,977 p=34824 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 00:04:33,978 p=34824 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 00:04:33,978 p=34824 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 00:04:33,980 p=34824 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 00:04:34,077 p=34824 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 00:04:34,085 p=34824 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 00:04:35,444 p=34824 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:04:35,456 p=34824 u=root n=ansible | TASK [install_grafana : Installiere Abhängigkeiten (Debian & RHEL)] *****************************************************************************************************************
+2025-02-02 00:04:36,729 p=34824 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"changed": false, "msg": "Failed to download metadata for repo 'epel': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried", "rc": 1, "results": []}
+2025-02-02 00:04:36,730 p=34824 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 00:04:36,730 p=34824 u=root n=ansible | 192.168.178.120            : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 00:05:01,309 p=35240 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 00:05:01,309 p=35240 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 00:05:01,309 p=35240 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 00:05:01,312 p=35240 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 00:05:01,407 p=35240 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 00:05:01,416 p=35240 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 00:05:02,536 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:05:02,547 p=35240 u=root n=ansible | TASK [install_grafana : Lade Grafana Enterprise herunter] ***************************************************************************************************************************
+2025-02-02 00:07:07,260 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:07,264 p=35240 u=root n=ansible | TASK [install_grafana : Erstelle Installationsverzeichnis] **************************************************************************************************************************
+2025-02-02 00:07:07,715 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:07,720 p=35240 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 00:07:18,870 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:18,875 p=35240 u=root n=ansible | TASK [install_grafana : Erstelle Systemd-Dienst für Grafana] ************************************************************************************************************************
+2025-02-02 00:07:19,648 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:19,652 p=35240 u=root n=ansible | TASK [install_grafana : Lade Systemd neu und starte Grafana] ************************************************************************************************************************
+2025-02-02 00:07:20,648 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:20,653 p=35240 u=root n=ansible | TASK [install_grafana : Öffne Firewall-Port für Grafana (Debian - UFW)] *************************************************************************************************************
+2025-02-02 00:07:20,664 p=35240 u=root n=ansible | skipping: [192.168.178.120]
+2025-02-02 00:07:20,669 p=35240 u=root n=ansible | TASK [install_grafana : Öffne Firewall-Port für Grafana (RHEL - Firewalld)] *********************************************************************************************************
+2025-02-02 00:07:21,279 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:21,284 p=35240 u=root n=ansible | TASK [install_grafana : Lade Firewall-Regeln neu (RHEL)] ****************************************************************************************************************************
+2025-02-02 00:07:21,918 p=35240 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 00:07:21,927 p=35240 u=root n=ansible | TASK [install_prometheus : Erstelle temporären Download-Ordner] *********************************************************************************************************************
+2025-02-02 00:07:22,288 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:22,293 p=35240 u=root n=ansible | TASK [install_prometheus : Lade Prometheus herunter] ********************************************************************************************************************************
+2025-02-02 00:07:23,521 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:23,526 p=35240 u=root n=ansible | TASK [install_prometheus : Entpacke Prometheus] *************************************************************************************************************************************
+2025-02-02 00:07:25,702 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:25,707 p=35240 u=root n=ansible | TASK [install_prometheus : Verschiebe Prometheus-Binärdateien nach /usr/local/bin] **************************************************************************************************
+2025-02-02 00:07:26,361 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:26,367 p=35240 u=root n=ansible | TASK [install_prometheus : Erstelle Prometheus-Systemd-Service] *********************************************************************************************************************
+2025-02-02 00:07:26,986 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:26,991 p=35240 u=root n=ansible | TASK [install_prometheus : Erstelle Prometheus-Ordner und setze Berechtigungen] *****************************************************************************************************
+2025-02-02 00:07:27,388 p=35240 u=root n=ansible | ok: [192.168.178.120] => (item=/etc/prometheus)
+2025-02-02 00:07:27,823 p=35240 u=root n=ansible | ok: [192.168.178.120] => (item=/var/lib/prometheus)
+2025-02-02 00:07:27,831 p=35240 u=root n=ansible | TASK [install_prometheus : Erstelle Prometheus-Konfigurationsdatei] *****************************************************************************************************************
+2025-02-02 00:07:28,535 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:28,539 p=35240 u=root n=ansible | TASK [install_prometheus : Starte und aktiviere Prometheus] *************************************************************************************************************************
+2025-02-02 00:07:29,089 p=35240 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 00:07:29,111 p=35240 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 00:07:29,111 p=35240 u=root n=ansible | 192.168.178.120            : ok=16   changed=7    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-02-02 10:31:44,681 p=44883 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 10:31:44,681 p=44883 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 10:31:44,681 p=44883 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 10:31:44,684 p=44883 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 10:31:44,754 p=44883 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 10:31:44,762 p=44883 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 10:31:46,142 p=44883 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:31:46,155 p=44883 u=root n=ansible | TASK [install_grafana : Erstelle temporären Download-Ordner] ************************************************************************************************************************
+2025-02-02 10:31:46,592 p=44883 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 10:31:46,596 p=44883 u=root n=ansible | TASK [install_grafana : Lade Grafana herunter] **************************************************************************************************************************************
+2025-02-02 10:33:26,588 p=44883 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 10:33:26,593 p=44883 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 10:33:38,398 p=44883 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 10:33:38,402 p=44883 u=root n=ansible | TASK [install_grafana : Erstelle Symlink für Grafana] *******************************************************************************************************************************
+2025-02-02 10:33:38,414 p=44883 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'grafana_install_dir' is undefined. 'grafana_install_dir' is undefined\n\nThe error appears to be in '/opt/DEV/ansible/roles/install_grafana/tasks/main.yml': line 21, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Erstelle Symlink für Grafana\n  ^ here\n"}
+2025-02-02 10:33:38,415 p=44883 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 10:33:38,415 p=44883 u=root n=ansible | 192.168.178.120            : ok=4    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 10:37:17,210 p=45738 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 10:37:17,211 p=45738 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 10:37:17,211 p=45738 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 10:37:17,213 p=45738 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 10:37:17,281 p=45738 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 10:37:17,289 p=45738 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 10:37:18,624 p=45738 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:37:18,636 p=45738 u=root n=ansible | TASK [install_grafana : Erstelle temporären Download-Ordner] ************************************************************************************************************************
+2025-02-02 10:37:19,073 p=45738 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:37:19,079 p=45738 u=root n=ansible | TASK [install_grafana : Lade Grafana herunter] **************************************************************************************************************************************
+2025-02-02 10:37:19,808 p=45738 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:37:19,813 p=45738 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 10:37:27,799 p=45738 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:37:27,803 p=45738 u=root n=ansible | TASK [install_grafana : Erstelle Symlink für Grafana] *******************************************************************************************************************************
+2025-02-02 10:37:27,814 p=45738 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'grafana_install_dir' is undefined. 'grafana_install_dir' is undefined\n\nThe error appears to be in '/opt/DEV/ansible/roles/install_grafana/tasks/main.yml': line 21, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Erstelle Symlink für Grafana\n  ^ here\n"}
+2025-02-02 10:37:27,815 p=45738 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 10:37:27,815 p=45738 u=root n=ansible | 192.168.178.120            : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 10:42:01,041 p=46608 u=root n=ansible | ERROR! the playbook: /opt/DEV/ansible/main.ymll could not be found
+2025-02-02 10:42:07,763 p=46612 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 10:42:07,763 p=46612 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 10:42:07,763 p=46612 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 10:42:07,766 p=46612 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 10:42:07,830 p=46612 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 10:42:07,838 p=46612 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 10:42:09,173 p=46612 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:42:09,185 p=46612 u=root n=ansible | TASK [install_grafana : Erstelle temporären Download-Ordner] ************************************************************************************************************************
+2025-02-02 10:42:09,615 p=46612 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:42:09,619 p=46612 u=root n=ansible | TASK [install_grafana : Lade Grafana herunter] **************************************************************************************************************************************
+2025-02-02 10:42:14,903 p=46612 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:42:14,908 p=46612 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 10:42:22,488 p=46612 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:42:22,493 p=46612 u=root n=ansible | TASK [install_grafana : Erstelle Symlink für Grafana] *******************************************************************************************************************************
+2025-02-02 10:42:22,505 p=46612 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'grafana_install_dir' is undefined. 'grafana_install_dir' is undefined\n\nThe error appears to be in '/opt/DEV/ansible/roles/install_grafana/tasks/main.yml': line 21, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Erstelle Symlink für Grafana\n  ^ here\n"}
+2025-02-02 10:42:22,506 p=46612 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 10:42:22,506 p=46612 u=root n=ansible | 192.168.178.120            : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 10:46:59,399 p=47484 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 10:46:59,399 p=47484 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 10:46:59,399 p=47484 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 10:46:59,402 p=47484 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 10:46:59,471 p=47484 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 10:46:59,479 p=47484 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 10:47:00,876 p=47484 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:47:00,888 p=47484 u=root n=ansible | TASK [install_grafana : Erstelle temporären Download-Ordner] ************************************************************************************************************************
+2025-02-02 10:47:01,331 p=47484 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:47:01,335 p=47484 u=root n=ansible | TASK [install_grafana : Lade Grafana herunter] **************************************************************************************************************************************
+2025-02-02 10:47:02,065 p=47484 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:47:02,070 p=47484 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 10:47:09,969 p=47484 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:47:09,973 p=47484 u=root n=ansible | TASK [install_grafana : Erstelle Symlink für Grafana] *******************************************************************************************************************************
+2025-02-02 10:47:10,333 p=47484 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "msg": "src file does not exist, use \"force=yes\" if you really want to create the link: /opt/grafana-10.0.0", "owner": "root", "path": "/opt/grafana", "secontext": "unconfined_u:object_r:usr_t:s0", "size": 4096, "src": "/opt/grafana-10.0.0", "state": "directory", "uid": 0}
+2025-02-02 10:47:10,334 p=47484 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 10:47:10,334 p=47484 u=root n=ansible | 192.168.178.120            : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 10:48:09,602 p=48437 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 10:48:09,602 p=48437 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 10:48:09,602 p=48437 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 10:48:09,605 p=48437 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 10:48:09,680 p=48437 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 10:48:09,688 p=48437 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 10:48:10,949 p=48437 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:48:10,962 p=48437 u=root n=ansible | TASK [install_grafana : Erstelle temporären Download-Ordner] ************************************************************************************************************************
+2025-02-02 10:48:11,413 p=48437 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:48:11,418 p=48437 u=root n=ansible | TASK [install_grafana : Lade Grafana herunter] **************************************************************************************************************************************
+2025-02-02 10:48:12,152 p=48437 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:48:12,157 p=48437 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 10:48:19,894 p=48437 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:48:19,899 p=48437 u=root n=ansible | TASK [install_grafana : Erstelle Symlink für Grafana] *******************************************************************************************************************************
+2025-02-02 10:48:20,252 p=48437 u=root n=ansible | fatal: [192.168.178.120]: FAILED! => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "msg": "src file does not exist, use \"force=yes\" if you really want to create the link: /opt/grafana-10.0.0", "owner": "root", "path": "/opt/grafana", "secontext": "unconfined_u:object_r:usr_t:s0", "size": 4096, "src": "/opt/grafana-10.0.0", "state": "directory", "uid": 0}
+2025-02-02 10:48:20,253 p=48437 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 10:48:20,253 p=48437 u=root n=ansible | 192.168.178.120            : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-02-02 10:49:53,506 p=49383 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-02 10:49:53,507 p=49383 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-02 10:49:53,507 p=49383 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-02 10:49:53,509 p=49383 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-02 10:49:53,574 p=49383 u=root n=ansible | PLAY [Setup Grafana] ****************************************************************************************************************************************************************
+2025-02-02 10:49:53,581 p=49383 u=root n=ansible | TASK [Gathering Facts] **************************************************************************************************************************************************************
+2025-02-02 10:49:54,989 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:49:55,003 p=49383 u=root n=ansible | TASK [install_grafana : Erstelle temporären Download-Ordner] ************************************************************************************************************************
+2025-02-02 10:49:55,438 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:49:55,442 p=49383 u=root n=ansible | TASK [install_grafana : Lade Grafana herunter] **************************************************************************************************************************************
+2025-02-02 10:49:56,152 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:49:56,157 p=49383 u=root n=ansible | TASK [install_grafana : Entpacke Grafana] *******************************************************************************************************************************************
+2025-02-02 10:50:03,757 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:03,762 p=49383 u=root n=ansible | TASK [install_grafana : Erstelle Systemd-Service für Grafana] ***********************************************************************************************************************
+2025-02-02 10:50:04,506 p=49383 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 10:50:04,511 p=49383 u=root n=ansible | TASK [install_grafana : Systemd neu laden] ******************************************************************************************************************************************
+2025-02-02 10:50:05,273 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:05,278 p=49383 u=root n=ansible | TASK [install_grafana : Aktiviere und starte den Grafana-Dienst] ********************************************************************************************************************
+2025-02-02 10:50:05,766 p=49383 u=root n=ansible | changed: [192.168.178.120]
+2025-02-02 10:50:05,770 p=49383 u=root n=ansible | TASK [install_grafana : Erlaube HTTP-Zugriff in der Firewall (Port 3000)] ***********************************************************************************************************
+2025-02-02 10:50:06,328 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:06,336 p=49383 u=root n=ansible | TASK [install_prometheus : Erstelle temporären Download-Ordner] *********************************************************************************************************************
+2025-02-02 10:50:06,682 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:06,687 p=49383 u=root n=ansible | TASK [install_prometheus : Lade Prometheus herunter] ********************************************************************************************************************************
+2025-02-02 10:50:08,059 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:08,064 p=49383 u=root n=ansible | TASK [install_prometheus : Entpacke Prometheus] *************************************************************************************************************************************
+2025-02-02 10:50:10,235 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:10,240 p=49383 u=root n=ansible | TASK [install_prometheus : Verschiebe Prometheus-Binärdateien nach /usr/local/bin] **************************************************************************************************
+2025-02-02 10:50:10,904 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:10,908 p=49383 u=root n=ansible | TASK [install_prometheus : Erstelle Prometheus-Systemd-Service] *********************************************************************************************************************
+2025-02-02 10:50:11,491 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:11,495 p=49383 u=root n=ansible | TASK [install_prometheus : Erstelle Prometheus-Ordner und setze Berechtigungen] *****************************************************************************************************
+2025-02-02 10:50:11,858 p=49383 u=root n=ansible | ok: [192.168.178.120] => (item=/etc/prometheus)
+2025-02-02 10:50:12,187 p=49383 u=root n=ansible | ok: [192.168.178.120] => (item=/var/lib/prometheus)
+2025-02-02 10:50:12,192 p=49383 u=root n=ansible | TASK [install_prometheus : Erstelle Prometheus-Konfigurationsdatei] *****************************************************************************************************************
+2025-02-02 10:50:12,773 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:12,777 p=49383 u=root n=ansible | TASK [install_prometheus : Starte und aktiviere Prometheus] *************************************************************************************************************************
+2025-02-02 10:50:13,223 p=49383 u=root n=ansible | ok: [192.168.178.120]
+2025-02-02 10:50:13,242 p=49383 u=root n=ansible | PLAY RECAP **************************************************************************************************************************************************************************
+2025-02-02 10:50:13,242 p=49383 u=root n=ansible | 192.168.178.120            : ok=16   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-02-03 19:58:38,714 p=126606 u=root n=ansible | [WARNING]:  * Failed to parse /opt/DEV/ansible/inventory/inventory.ini with ini plugin: /opt/DEV/ansible/inventory/inventory.ini:14: Expected key=value host variable assignment,
+got: Packages
+
+2025-02-03 19:58:38,714 p=126606 u=root n=ansible | [WARNING]: Unable to parse /opt/DEV/ansible/inventory/inventory.ini as an inventory source
+
+2025-02-03 19:58:38,714 p=126606 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-02-03 19:58:38,717 p=126606 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-02-03 19:58:38,787 p=126606 u=root n=ansible | ERROR! conflicting action statements: hosts, roles
+
+The error appears to be in '/opt/DEV/ansible/roles/install_prometheus_pushgateway/handlers/main.yml': line 2, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+- name: Install Prometheus Pushgateway
+  ^ here
+

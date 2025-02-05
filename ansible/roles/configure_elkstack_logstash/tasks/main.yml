@@ -1,0 +1,63 @@
+---
+# Step 1: Add the Elastic repository (optional, falls Logstash nicht installiert werden muss, aber für Updates erforderlich)
+- name: Add the Elastic repository (if needed)
+  yum_repository:
+    name: elasticsearch
+    description: "Elastic repository"
+    baseurl: "https://artifacts.elastic.co/packages/7.x/yum"
+    gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+    enabled: yes
+    gpgcheck: yes
+    state: present
+
+# Step 2: Ensure Logstash service is enabled and running
+- name: Ensure Logstash service is enabled and started
+  systemd:
+    name: logstash
+    enabled: yes
+    state: started
+
+# Step 3: Create a Logstash configuration file for RedHat system logs
+- name: Create Logstash configuration file for RedHat system logs
+  copy:
+    dest: /etc/logstash/conf.d/01-redhat-syslog.conf
+    content: |
+      input {
+        file {
+          path => "/var/log/messages"
+          type => "syslog"
+          start_position => "beginning"
+          sincedb_path => "/dev/null"
+        }
+      }
+      
+      filter {
+        if [type] == "syslog" {
+          grok {
+            match => { "message" => "%{SYSLOGTIMESTAMP} %{SYSLOGHOST} %{DATA:program}: %{GREEDYDATA:message}" }
+          }
+          date {
+            match => [ "timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+          }
+        }
+      }
+
+      output {
+        elasticsearch {
+          hosts => ["http://localhost:9200"]
+          index => "logstash-redhat-syslog-%{+YYYY.MM.dd}"
+          user => "elastic"
+          password => "changeme"
+        }
+        stdout { codec => rubydebug }
+      }
+  notify:
+    - Restart Logstash
+
+# Step 4: Ensure firewall allows communication to Elasticsearch (if needed)
+- name: Open firewall for Elasticsearch communication (port 9200)
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+    immediate: yes

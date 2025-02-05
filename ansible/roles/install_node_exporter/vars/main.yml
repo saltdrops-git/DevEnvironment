@@ -1,0 +1,5 @@
+node_exporter_version: "1.7.0"
+node_exporter_bin: "/usr/local/bin/node_exporter"
+textfile_directory: "/opt/DEV/work"
+systemd_service: "/etc/systemd/system/node_exporter.service"
+

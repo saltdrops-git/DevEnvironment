@@ -1,0 +1,39 @@
+---
+# Configure firewall on RedHat-based systems using firewalld
+
+- name: Install firewalld
+  yum:
+    name: firewalld
+    state: present
+
+- name: Enable and start firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Allow Elasticsearch port 9200
+  firewalld:
+    service: 'elasticsearch'
+    permanent: yes
+    state: enabled
+    port: 9200/tcp
+
+- name: Allow Logstash port 5044
+  firewalld:
+    service: 'logstash'
+    permanent: yes
+    state: enabled
+    port: 5044/tcp
+
+- name: Allow Kibana port 5601
+  firewalld:
+    service: 'kibana'
+    permanent: yes
+    state: enabled
+    port: 5601/tcp
+
+- name: Reload firewalld to apply changes
+  firewalld:
+    state: reloaded
+

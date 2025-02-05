@@ -1,0 +1,71 @@
+---
+- name: Install prerequisites (Debian-based)
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install prerequisites (RHEL-based)
+  yum:
+    name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Add Docker GPG key (Debian-based)
+  apt_key:
+    url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add Docker repository (Debian-based)
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add Docker repository (RHEL-based)
+  yum_repository:
+    name: docker
+    description: Docker Repository
+    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+  when: ansible_os_family == "RedHat"
+
+- name: Install Docker
+  package:
+    name: docker-ce
+    state: present
+
+- name: Enable and start Docker service
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Allow Docker in Firewall (firewalld for RHEL-based systems)
+  firewalld:
+    service: docker
+    permanent: yes
+    state: enabled
+  when: ansible_os_family == "RedHat"
+
+- name: Allow Docker ports in UFW (Debian-based systems)
+  ufw:
+    rule: allow
+    port: "2375,2376"
+    proto: tcp
+  when: ansible_os_family == "Debian"
+
+- name: Reload FirewallD
+  command: firewall-cmd --reload
+  when: ansible_os_family == "RedHat"
+

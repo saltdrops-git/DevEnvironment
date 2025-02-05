@@ -1,0 +1,53 @@
+---
+# Install ELK Stack on RedHat-based system (RHEL, CentOS, etc.)
+
+- name: Install Java (required by Elasticsearch and Logstash)
+  yum:
+    name: java-11-openjdk
+    state: present
+
+- name: Add Elasticsearch YUM repository
+  yum_repository:
+    name: elasticsearch
+    description: "Elasticsearch repository"
+    baseurl: "https://artifacts.elastic.co/packages/7.x/yum"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+
+- name: Install Elasticsearch
+  yum:
+    name: elasticsearch
+    state: present
+
+- name: Configure Elasticsearch
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+  notify:
+    - Restart Elasticsearch
+
+- name: Install Logstash
+  yum:
+    name: logstash
+    state: present
+
+- name: Configure Logstash
+  template:
+    src: logstash.yml.j2
+    dest: /etc/logstash/logstash.yml
+  notify:
+    - Restart Logstash
+
+- name: Install Kibana
+  yum:
+    name: kibana
+    state: present
+
+- name: Configure Kibana
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+  notify:
+    - Restart Kibana
+

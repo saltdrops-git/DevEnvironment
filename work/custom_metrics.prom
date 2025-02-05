@@ -1,0 +1,4 @@
+# HELP cert_expiry This is a custom metric example
+# TYPE cert_expiry gauge
+cert_expiry 6
+

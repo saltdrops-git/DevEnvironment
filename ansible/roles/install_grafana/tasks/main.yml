@@ -1,66 +1,55 @@
 ---
-- name: Installiere Abhängigkeiten (Debian & RHEL)
-  ansible.builtin.package:
-    name: ["wget"]
-    state: present
 
-- name: Lade Grafana GPG-Schlüssel herunter
+- name: Erstelle temporären Download-Ordner
+  ansible.builtin.file:
+    path: /tmp/grafana
+    state: directory
+    mode: '0755'
+
+- name: Lade Grafana herunter
   ansible.builtin.get_url:
-    url: "https://rpm.grafana.com/gpg.key"
-    dest: "/tmp/grafana.gpg.key"
+    url: "https://dl.grafana.com/enterprise/release/grafana-enterprise-{{ grafana_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/grafana/grafana.tar.gz"
     mode: '0644'
 
-- name: Importiere GPG-Schlüssel (RHEL & Debian)
-  ansible.builtin.command:
-    cmd: "rpm --import /tmp/grafana.gpg.key"
-  args:
-    removes: "/tmp/grafana.gpg.key"
-  when: ansible_os_family == "RedHat"
+- name: Entpacke Grafana
+  ansible.builtin.unarchive:
+    src: "/tmp/grafana/grafana.tar.gz"
+    dest: "/opt/"
+    remote_src: yes
 
-- name: Füge Grafana-Repository hinzu (Debian)
-  ansible.builtin.apt_repository:
-    repo: "deb https://packages.grafana.com/oss/deb stable main"
-    state: present
-  when: ansible_os_family == "Debian"
+- name: Erstelle Systemd-Service für Grafana
+  ansible.builtin.copy:
+    dest: "/etc/systemd/system/{{ grafana_service_name }}.service"
+    content: |
+      [Unit]
+      Description=Grafana Service
+      After=network.target
 
-- name: Füge Grafana-Repository hinzu (RHEL)
-  ansible.builtin.yum_repository:
-    name: grafana
-    description: Grafana Repository
-    baseurl: https://packages.grafana.com/oss/rpm
-    gpgcheck: 1
-    gpgkey: https://rpm.grafana.com/gpg.key
-    enabled: 1
-  when: ansible_os_family == "RedHat"
+      [Service]
+      Type=simple
+      User=root
+      ExecStart=/opt/grafana/bin/grafana server --homepath=/opt/grafana --config=/opt/grafana/conf/defaults.ini
+      Restart=always
 
-- name: Installiere Grafana
-  ansible.builtin.package:
-    name: grafana
-    state: present
+      [Install]
+      WantedBy=multi-user.target
+    mode: '0644'
 
-- name: Stelle sicher, dass Grafana gestartet und aktiviert ist
+- name: Systemd neu laden
   ansible.builtin.systemd:
-    name: grafana-server
+    daemon_reload: yes
+
+- name: Aktiviere und starte den Grafana-Dienst
+  ansible.builtin.systemd:
+    name: "{{ grafana_service_name }}"
     enabled: yes
     state: started
 
-- name: Öffne Firewall-Port für Grafana (Debian - UFW)
-  community.general.ufw:
-    rule: allow
-    port: "3000"
-    proto: tcp
-  when: ansible_os_family == "Debian"
-
-- name: Öffne Firewall-Port für Grafana (RHEL - Firewalld)
+- name: Erlaube HTTP-Zugriff in der Firewall (Port 3000)
   ansible.builtin.firewalld:
     port: 3000/tcp
     permanent: yes
     state: enabled
-  when: ansible_os_family == "RedHat"
-
-- name: Lade Firewall-Regeln neu (RHEL)
-  ansible.builtin.systemd:
-    name: firewalld
-    state: restarted
-  when: ansible_os_family == "RedHat"
+    immediate: yes
 

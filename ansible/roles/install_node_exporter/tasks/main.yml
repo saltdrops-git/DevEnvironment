@@ -1,0 +1,83 @@
+---
+
+- name: Create textfile directory
+  file:
+    path: "{{ textfile_directory }}"
+    state: directory
+    mode: '0755'
+
+- name: Create example .prom file
+  copy:
+    dest: "{{ textfile_directory }}/example_metrics.prom"
+    content: |
+      # HELP my_custom_metric This is a custom metric example
+      # TYPE my_custom_metric gauge
+      my_custom_metric 123.45
+      
+      # HELP another_metric Another example metric
+      # TYPE another_metric counter
+      another_metric 678
+    mode: '0644'
+
+- name: Download Node Exporter binary using curl
+  command: >
+    curl -L -o /tmp/node_exporter.tar.gz 
+    https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz
+
+- name: Extract Node Exporter
+  ansible.builtin.unarchive:
+    src: "/tmp/node_exporter.tar.gz"
+    dest: "/tmp"
+    remote_src: yes
+
+- name: Move Node Exporter binary
+  command: mv "/tmp/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter" "{{ node_exporter_bin }}"
+  args:
+    creates: "{{ node_exporter_bin }}"
+
+- name: Ensure Node Exporter is executable
+  file:
+    path: "{{ node_exporter_bin }}"
+    mode: '0755'
+
+- name: Create Node Exporter user
+  user:
+    name: node_exporter
+    shell: /usr/sbin/nologin
+    system: yes
+    createhome: no
+  ignore_errors: yes
+
+- name: Set ownership of Node Exporter binary
+  file:
+    path: "{{ node_exporter_bin }}"
+    owner: root
+    group: root
+
+- name: Create systemd service file
+  copy:
+    dest: "{{ systemd_service }}"
+    content: |
+      [Unit]
+      Description=Node Exporter
+      After=network.target
+
+      [Service]
+      User=root
+      Group=root
+      Type=simple
+      ExecStart={{ node_exporter_bin }} --collector.textfile.directory={{ textfile_directory }}
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start Node Exporter
+  systemd:
+    name: node_exporter
+    enabled: yes
+    state: started
+
